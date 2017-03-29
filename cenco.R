@@ -9,15 +9,15 @@ library("lubridate")
 
 setwd("~/data/")
 
-users <- search_tweets(q='#cenco', n = 1000)
+users <- search_tweets(q='#cenco', n = 10000)
 #users <- search_users(q= '#rassop',n = 1000, parse = TRUE, verbose=TRUE)
-users <- unique(users)
+#users <- unique(users)
 
 users <- users %>%
          as_tibble() %>%
          mutate(where = paste0("https://twitter.com/",screen_name)) %>%
-		 filter(retweet_count >= 5,created_at < ymd_hms("2017-03-27 00:00:00") 
-		         & created_at > ymd_hms("2017-03-26 00:00:00")
+		 filter(lubridate::date(created_at) < "2017-03-29" 
+		         & lubridate::date(created_at) > "2017-03-27" 
 			    )
 		 
 get_piclink <- function(df){
