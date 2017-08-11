@@ -6,13 +6,10 @@ library(jpname)
 library(stringr)
 library(dplyr)
 
-setwd("~/kdm_dup/")
-
 #Building the dataset using the highlighted variables from the assignment 
 
 #Loading the geocodes of Pretoria & Johannesburg
 geocodes <- read.csv("geocodeskm.csv")
-
 
 day_control <- function(x,n){
   
@@ -30,7 +27,6 @@ day_control <- function(x,n){
     y <- sample(1:check, size=1, replace = FALSE)
   }
 }
-
 
 data <- data.frame()
 for (i in 1: 100000){
@@ -95,9 +91,7 @@ for (i in 1: 100000){
     other_party_surname = ifelse(person_involved %in% "Male", jp_male(), jp_female()),
     claim_serv_prov = claim_serv_prov
   )
-  
-  data <- rbind(data, df)
-  
+  data <- rbind(data, df)  
 }
 
 data %>% 
